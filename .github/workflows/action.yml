@@ -1,0 +1,49 @@
+name: The Internet Python Playwright
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Tesseract
+        run: |
+          sudo apt install tesseract-ocr
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install --upgrade setuptools
+          pip install -r requirements.txt
+
+      - name: Installing Ruff
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: "--version"
+
+      - name: Run Ruff check and format
+        run: |
+          ruff check --fix
+          ruff format
+
+      - name: Pull and run Docker container
+        run: |
+          docker run -d -p 7080:5000 gprestes/the-internet
+
+      - name: Run pytest
+        run: |
+          PYTHONPATH=$PYTHONPATH:$(pwd)/utils pytest ./tests
+
+      - name: Stop and remove Docker container
+        run: |
+          docker stop $(docker ps -a -q)
+          docker rm $(docker ps -a -q)
+
+
