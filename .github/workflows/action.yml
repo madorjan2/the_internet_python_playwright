@@ -25,7 +25,7 @@ jobs:
 
       - name: Running playwright install
         run: |
-          playwright install
+          playwright install --with-deps
 
       - name: Installing Ruff
         uses: astral-sh/ruff-action@v3
@@ -43,7 +43,23 @@ jobs:
 
       - name: Run pytest
         run: |
-          PYTHONPATH=$PYTHONPATH:$(pwd)/utils pytest
+          PYTHONPATH=$PYTHONPATH:$(pwd)/utils pytest --tracing=retain-on-failure
+
+      - name: Checkout traces branch
+        if: ${{ failure() }}
+        run: |
+          git checkout --orphan playwright-trace-${{ github.run_id }}
+          git rm --cached -r .
+          echo "Playwright Test Traces" > README.md
+          git add README.md
+          git commit -m "Initialize traces branch"
+          git push --set-upstream origin playwright-trace-${{ github.run_id }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: playwright-traces
+          path: test-results/
 
       - name: Stop and remove Docker container
         run: |
