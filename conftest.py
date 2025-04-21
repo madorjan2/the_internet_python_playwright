@@ -17,3 +17,11 @@ def def_page(page: Page, request):
 		request.instance.page = page
 
 	yield page
+
+
+@pytest.fixture(scope='function')
+def prenav_page(page: Page, request):
+	if request.instance is not None:
+		request.instance.page = page
+
+	yield page

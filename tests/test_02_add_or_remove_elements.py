@@ -14,9 +14,25 @@ class TestAddRemoveElement(BaseTest):
 			num
 		)
 
+	def click_first_delete_button(self):
+		self.page.get_by_role('button', name='Delete').first.click()
+
 	def test_add_element(self, def_page):
 		self.add_element()
 		self.assert_number_of_delete_buttons(1)
 		self.add_element()
 		self.add_element()
 		self.assert_number_of_delete_buttons(3)
+
+	def test_delete_button(self, def_page):
+		self.add_element()
+		self.assert_number_of_delete_buttons(1)
+		self.click_first_delete_button()
+		self.assert_number_of_delete_buttons(0)
+		self.add_element()
+		self.add_element()
+		self.assert_number_of_delete_buttons(2)
+		self.click_first_delete_button()
+		self.assert_number_of_delete_buttons(1)
+		self.click_first_delete_button()
+		self.assert_number_of_delete_buttons(0)
