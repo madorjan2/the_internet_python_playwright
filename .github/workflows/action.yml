@@ -13,15 +13,19 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install Tesseract
-        run: |
-          sudo apt install tesseract-ocr
+#      - name: Install Tesseract
+#        run: |
+#          sudo apt install tesseract-ocr
 
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install --upgrade setuptools
           pip install -r requirements.txt
+
+      - name: Running playwright install
+        run: |
+          playwright install
 
       - name: Installing Ruff
         uses: astral-sh/ruff-action@v3
