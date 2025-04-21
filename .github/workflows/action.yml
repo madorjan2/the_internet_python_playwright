@@ -45,21 +45,39 @@ jobs:
         run: |
           PYTHONPATH=$PYTHONPATH:$(pwd)/utils pytest --tracing=retain-on-failure
 
-      - name: Checkout traces branch
-        if: ${{ failure() }}
-        run: |
-          git checkout --orphan playwright-trace-${{ github.run_id }}
-          git rm --cached -r .
-          echo "Playwright Test Traces" > README.md
-          git add README.md
-          git commit -m "Initialize traces branch"
-          git push --set-upstream origin playwright-trace-${{ github.run_id }}
-
-      - uses: actions/upload-artifact@v4
-        if: ${{ failure() }}
+      - name: Upload traces as artifacts (for workflow debugging)
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: playwright-traces
           path: test-results/
+
+      - name: Configure Git
+        if: always()
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Push traces to traces branch
+        if: always()
+        run: |
+          # Create and checkout traces branch
+          git fetch --all || true
+          git checkout traces 2>/dev/null || git checkout -b traces
+          
+          # Remove old traces if they exist
+          rm -rf traces || true
+          mkdir -p traces
+          
+          # Copy new traces to the directory
+          cp -r test-results/* traces/ || true
+          
+          # Add and commit the traces
+          git add traces
+          git commit -m "Update Playwright traces from CI run" || echo "No changes to commit"
+          
+          # Push to the traces branch
+          git push origin traces
 
       - name: Stop and remove Docker container
         run: |
