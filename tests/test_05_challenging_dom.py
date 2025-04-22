@@ -1,10 +1,8 @@
-# ToDo: Pytesseract
-
 from utils.base_test import BaseTest
 
 import csv
 import base64
-# import pytesseract
+import pytesseract
 import io
 import os
 from PIL import Image
@@ -35,9 +33,9 @@ class TestChallengingDom(BaseTest):
 	def get_num_from_dom(self):
 		scripts = self.page.locator('//script').all()
 		for script in scripts:
-			if 'Answer: ' in script.evaluate("(element) => element.innerHTML"):
+			if 'Answer: ' in script.evaluate('(element) => element.innerHTML'):
 				return (
-					script.evaluate("(element) => element.innerHTML")
+					script.evaluate('(element) => element.innerHTML')
 					.split('Answer: ')[1]
 					.split("'")[0]
 				)
@@ -54,7 +52,12 @@ class TestChallengingDom(BaseTest):
 		trs = self.get_table().get_by_role('row').all()
 		for tr in trs:
 			tds = tr.get_by_role('cell').all()
-			table_content.append([td.text_content().replace('\n', '').replace(' ','') for td in tds])
+			table_content.append(
+				[
+					td.text_content().replace('\n', '').replace(' ', '')
+					for td in tds
+				]
+			)
 		assert table_content == read_expected()
 
 	def test_image(self, def_page):
@@ -63,5 +66,5 @@ class TestChallengingDom(BaseTest):
 			"(canvas) => canvas.toDataURL('image/png').substring(21)", canvas
 		)
 		img_data = Image.open(io.BytesIO(base64.b64decode(img_base64)))
-		# num = pytesseract.image_to_string(img_data).split(': ')[1].strip()
-		# assert num == self.get_num_from_dom()
+		num = pytesseract.image_to_string(img_data).split(': ')[1].strip()
+		assert num == self.get_num_from_dom()

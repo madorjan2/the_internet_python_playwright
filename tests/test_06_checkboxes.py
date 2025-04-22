@@ -1,5 +1,6 @@
 from utils.base_test import BaseTest
 
+
 class TestCheckboxes(BaseTest):
 	page_url = '/checkboxes'
 
