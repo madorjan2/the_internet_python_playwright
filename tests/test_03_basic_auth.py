@@ -37,7 +37,8 @@ class TestBasicAuth(BaseTest):
 		if pytestconfig.getoption('--headed', False):
 			with pytest.raises(PlaywrightError) as error_info:
 				self.page.goto(self.base_url + self.page_url)
-			assert 'ERR_INVALID_AUTH_CREDENTIALS' in str(error_info.value)
+				assert 'ERR_INVALID_AUTH_CREDENTIALS' in str(error_info.value)
+
 		# in headless mode, we just get to the Not authorized page, same as if we click Cancel in headed mode
 		else:
 			self.page.goto(self.base_url + self.page_url)
