@@ -1,12 +1,4 @@
-import time
-
-from playwright.sync_api import expect
-
 from utils.base_test import BaseTest
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common import TimeoutException
 
 
 class TestDisappearingElements(BaseTest):
