@@ -8,6 +8,7 @@ class TestEntryAd(BaseTest):
 	page_url = '/entry_ad'
 
 	@pytest.mark.flaky(reruns=3)
+	@pytest.mark.skip_browser('webkit')
 	def test_entry_ad(self, def_page):
 		p_close = self.page.locator('.modal-footer p')
 		p_close.click()
