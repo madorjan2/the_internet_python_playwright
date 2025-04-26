@@ -16,7 +16,9 @@ class TestEntryAd(BaseTest):
 		expect(modal).not_to_be_visible()
 
 		self.page.reload()
-		expect(modal).not_to_be_visible()
+
+		if modal.count() > 0 and modal.is_visible():
+			pytest.fail('Modal is still visible after reload')
 
 		self.page.get_by_role('link', name='click here').click()
 		modal.wait_for(state='visible')
