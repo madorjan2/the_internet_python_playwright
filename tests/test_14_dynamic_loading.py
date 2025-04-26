@@ -16,5 +16,5 @@ class TestDynamicLoading(BaseTest):
 
 		self.page.get_by_role('button', name='Start').click()
 
-		self.page.wait_for_selector('#finish h4', state='visible')
+		h4_result.wait_for(state='visible')
 		expect(h4_result).to_be_visible()
