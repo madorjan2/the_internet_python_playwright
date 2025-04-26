@@ -15,6 +15,7 @@ class TestEntryAd(BaseTest):
 		expect(modal).not_to_be_visible()
 
 		self.page.get_by_role('link', name='click here').click()
+		modal.wait_for(state='visible')
 		expect(modal).to_be_visible()
 
 		self.page.reload()
