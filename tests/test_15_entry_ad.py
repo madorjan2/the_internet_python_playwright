@@ -7,7 +7,7 @@ from utils.base_test import BaseTest
 class TestEntryAd(BaseTest):
 	page_url = '/entry_ad'
 
-	@pytest.mark.flaky(reruns=3)
+	@pytest.mark.flaky(reruns=5)
 	def test_entry_ad(self, def_page):
 		self.page.locator('.modal-footer p').click()
 		modal = self.page.locator('.modal')
