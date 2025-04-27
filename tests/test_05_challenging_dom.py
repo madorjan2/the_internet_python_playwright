@@ -38,6 +38,7 @@ class TestChallengingDom(BaseTest):
 					script.evaluate('(element) => element.innerHTML')
 					.split('Answer: ')[1]
 					.split("'")[0]
+					.replace(',', '')
 				)
 		raise ValueError('No script tag with an answer on page')
 
