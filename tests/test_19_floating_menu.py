@@ -1,3 +1,5 @@
+import time
+
 from playwright.sync_api import expect
 
 from utils.base_test import BaseTest
@@ -7,9 +9,13 @@ class TestFloatingMenu(BaseTest):
 	page_url = '/floating_menu'
 	url = 'http://localhost:7080/floating_menu'
 
-	def are_we_scrolled_down(self):
+	def are_we_scrolled_down(self, timeout=2, polling_interval=0.2):
 		menu = self.page.locator('#menu')
 		scroll = float(menu.get_attribute('style')[5:-3])
+		start_time = time.monotonic()
+		while scroll == 0 and time.monotonic() - start_time < timeout:
+			scroll = float(menu.get_attribute('style')[5:-3])
+			time.sleep(polling_interval)
 		assert scroll > 0, 'Menu is not scrolled down'
 
 	def are_elements_visible(self):
