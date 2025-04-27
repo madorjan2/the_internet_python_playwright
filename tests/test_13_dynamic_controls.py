@@ -6,7 +6,7 @@ from utils.base_test import BaseTest
 class TestDynamicControls(BaseTest):
 	page_url = '/dynamic_controls'
 
-	def test_disappearing_checkbox(self, def_page):
+	def test_disappearing_checkbox(self):
 		checkbox = self.page.get_by_role('checkbox')
 		expect(checkbox).to_be_visible()
 
@@ -18,7 +18,7 @@ class TestDynamicControls(BaseTest):
 		button_add_checkbox.click()
 		expect(checkbox).to_be_visible()
 
-	def test_disabled_input(self, def_page):
+	def test_disabled_input(self):
 		input_field = self.page.get_by_role('textbox')
 		expect(input_field).to_be_disabled()
 

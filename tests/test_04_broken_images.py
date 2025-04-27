@@ -14,7 +14,7 @@ class TestBrokenImages(BaseTest):
 			(3, False),
 		],
 	)
-	def test_image_is_broken(self, def_page, index, expected):
+	def test_image_is_broken(self, index, expected):
 		xpath_selector = f'//div[@id="content"]//img[{index}]'
 		is_broken = self.page.evaluate(
 			"""(selector) => {

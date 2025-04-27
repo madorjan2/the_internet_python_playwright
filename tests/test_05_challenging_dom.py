@@ -41,13 +41,13 @@ class TestChallengingDom(BaseTest):
 				)
 		raise ValueError('No script tag with an answer on page')
 
-	def test_buttons(self, def_page):
+	def test_buttons(self):
 		for button in self.get_buttons():
 			button_id = button.get_attribute('id')
 			button.click()
 			assert button.get_attribute('id') != button_id
 
-	def test_table(self, def_page):
+	def test_table(self):
 		table_content = []
 		trs = self.get_table().get_by_role('row').all()
 		for tr in trs:
@@ -60,7 +60,7 @@ class TestChallengingDom(BaseTest):
 			)
 		assert table_content == read_expected()
 
-	def test_image(self, def_page):
+	def test_image(self):
 		canvas = self.page.locator('//canvas').element_handle()
 		img_base64 = self.page.evaluate(
 			"(canvas) => canvas.toDataURL('image/png').substring(21)", canvas

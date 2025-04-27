@@ -9,7 +9,7 @@ class TestDragAndDrop(BaseTest):
 
 	# This test constantly fails on webkit
 	@pytest.mark.skip_browser('webkit')
-	def test_drag_and_drop_with_drag_to(self, def_page):
+	def test_drag_and_drop_with_drag_to(self):
 		left_box = self.page.locator('#column-a')
 		right_box = self.page.locator('#column-b')
 		expect(left_box).to_have_text('A')
@@ -20,7 +20,7 @@ class TestDragAndDrop(BaseTest):
 
 	# This test constantly fails on webkit
 	@pytest.mark.skip_browser('webkit')
-	def test_drag_and_drop_with_mouse_actions(self, def_page):
+	def test_drag_and_drop_with_mouse_actions(self):
 		left_box = self.page.locator('#column-a')
 		right_box = self.page.locator('#column-b')
 		expect(left_box).to_have_text('A')

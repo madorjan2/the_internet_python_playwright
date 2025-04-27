@@ -15,7 +15,7 @@ def are_different(str_list):
 class TestDynamicContent(BaseTest):
 	page_url = '/dynamic_content'
 
-	def test_dynamic_content(self, def_page):
+	def test_dynamic_content(self):
 		profile_pics = []
 		descriptions = []
 		for i in range(10):

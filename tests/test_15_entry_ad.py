@@ -9,7 +9,7 @@ class TestEntryAd(BaseTest):
 
 	@pytest.mark.flaky(reruns=3)
 	@pytest.mark.skip_browser('webkit')
-	def test_entry_ad(self, def_page):
+	def test_entry_ad(self):
 		p_close = self.page.locator('.modal-footer p')
 		p_close.click()
 		modal = self.page.locator('.modal')
@@ -24,4 +24,3 @@ class TestEntryAd(BaseTest):
 		self.page.get_by_role('link', name='click here').click()
 		modal.wait_for(state='visible')
 		expect(modal).to_be_visible()
-

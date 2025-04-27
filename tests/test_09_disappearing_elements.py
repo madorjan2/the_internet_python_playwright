@@ -16,5 +16,5 @@ class TestDisappearingElements(BaseTest):
 			counter += 1
 		return counter
 
-	def test_reload(self, def_page):
+	def test_reload(self):
 		assert self.get_number_of_reloads(self.is_gallery_present()) < 100

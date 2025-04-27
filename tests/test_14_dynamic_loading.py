@@ -8,7 +8,7 @@ class TestDynamicLoading(BaseTest):
 	page_url = '/dynamic_loading'
 
 	@pytest.mark.parametrize('link_name', ['Example 1', 'Example 2'])
-	def test_hidden_element(self, def_page, link_name):
+	def test_hidden_element(self, link_name):
 		self.page.get_by_role('link', name=link_name).click()
 		h4_result = self.page.locator('#finish h4')
 

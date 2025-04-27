@@ -17,14 +17,14 @@ class TestAddRemoveElement(BaseTest):
 	def click_first_delete_button(self):
 		self.page.get_by_role('button', name='Delete').first.click()
 
-	def test_add_element(self, def_page):
+	def test_add_element(self):
 		self.add_element()
 		self.assert_number_of_delete_buttons(1)
 		self.add_element()
 		self.add_element()
 		self.assert_number_of_delete_buttons(3)
 
-	def test_delete_button(self, def_page):
+	def test_delete_button(self):
 		self.add_element()
 		self.assert_number_of_delete_buttons(1)
 		self.click_first_delete_button()

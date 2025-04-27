@@ -6,7 +6,7 @@ from playwright.sync_api import expect
 class TestSmoke(BaseTest):
 	page_url = ''
 
-	def test_title(self, def_page):
+	def test_title(self):
 		expect(self.page.get_by_role('heading').first).to_have_text(
 			'Welcome to the-internet'
 		)

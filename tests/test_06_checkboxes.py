@@ -4,7 +4,7 @@ from utils.base_test import BaseTest
 class TestCheckboxes(BaseTest):
 	page_url = '/checkboxes'
 
-	def test_checkboxes(self, def_page):
+	def test_checkboxes(self):
 		cb1, cb2 = self.page.get_by_role('checkbox').all()
 		assert cb1.is_enabled() and cb2.is_enabled()
 		cb1.set_checked(False)

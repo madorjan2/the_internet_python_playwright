@@ -6,7 +6,7 @@ from utils.base_test import BaseTest
 class TestExitIntent(BaseTest):
 	page_url = '/exit_intent'
 
-	def test_exit_intent(self, def_page):
+	def test_exit_intent(self):
 		viewport_size = self.page.viewport_size
 		self.page.mouse.move(viewport_size['width'] / 2, 1)
 		self.page.mouse.move(viewport_size['width'] / 2, -5)

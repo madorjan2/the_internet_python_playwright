@@ -6,7 +6,7 @@ from playwright.sync_api import expect
 class TestDropdown(BaseTest):
 	page_url = '/dropdown'
 
-	def test_dropdown(self, def_page):
+	def test_dropdown(self):
 		select = self.page.get_by_role('combobox')
 		expect(select.locator('//option[@selected]')).to_have_text(
 			'Please select an option'
