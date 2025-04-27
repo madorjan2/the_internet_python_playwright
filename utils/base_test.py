@@ -4,15 +4,25 @@ import pytest
 from playwright.sync_api import Page
 
 
+def get_test_data_path():
+	this_folder_path = os.path.abspath(
+		os.path.join(os.path.realpath(__file__), os.pardir)
+	)
+	path = os.path.join(this_folder_path, '..', 'tests', 'test_data')
+	return path
+
+
 class BaseTest(object):
 	base_url = 'http://localhost:7080'
 	page_url = None
 	download_path = None
+	data_path = None
 	page: Page
 
 	@pytest.fixture(autouse=True)
 	def setup_page(self, def_page):
 		self.download_path = self.get_download_folder_path()
+		self.data_path = get_test_data_path()
 		self.clear_download_directory()
 		return def_page
 
