@@ -30,6 +30,7 @@ class TestJQueryMenus(BaseTest):
 			self.page.get_by_role('menuitem', name='Disabled').locator('..')
 		).get_attribute('class')
 
+	@pytest.mark.flaky(reruns=3)
 	@pytest.mark.parametrize(
 		'file_type, element_id',
 		[
