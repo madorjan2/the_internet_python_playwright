@@ -20,4 +20,4 @@ class TestInputs(BaseTest):
 		self.get_input_field().press('ArrowDown')
 		expect(self.get_input_field()).to_have_value('123')
 
-	# ToDo (after multiple browser support implementation): negative branch is browser-dependant, since the accepted input differs (e.g. Firefox accepts all kind of input in number type fields)
+	# negative branch is browser-dependant, since the accepted input differs (e.g. Firefox accepts all kind of input in number type fields)
