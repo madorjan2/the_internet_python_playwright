@@ -40,7 +40,7 @@ def handle_route_wrapper(username, password):
 	return handle_route
 
 
-class TestBasicAuth(BaseTest):
+class TestDigestAuth(BaseTest):
 	page_url = '/digest_auth'
 
 	def test_valid_login(self, prenav_page):
