@@ -8,7 +8,9 @@ class TestDisappearingElements(BaseTest):
 		return self.page.get_by_role('link', name='Gallery').count() > 0
 
 	def get_number_of_reloads(self, is_present):
-		"""Reloads the page until the gallery is present or 100 times.
+		"""Reloads the page until the gallery is present (if it was not present originally)
+		 or is not present (if it was present originally)
+		 or 100 times.
 		Returns the number of reloads."""
 		counter = 0
 		while is_present == self.is_gallery_present() and counter < 100:
