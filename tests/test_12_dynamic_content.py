@@ -29,5 +29,9 @@ class TestDynamicContent(BaseTest):
 			descriptions.append(
 				[element.text_content() for element in current_desc]
 			)
+
+			if are_different(profile_pics) and are_different(descriptions):
+				break
+
 			self.page.reload()
 		assert are_different(profile_pics) and are_different(descriptions)
