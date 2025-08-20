@@ -1,3 +1,5 @@
+# TODO: rewrite, logic is faulty
+# should be checking if modal comes back after reload after clicking
 import pytest
 from playwright.sync_api import expect
 
