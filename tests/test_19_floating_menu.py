@@ -1,3 +1,4 @@
+# TODO: are_elements_visible() should return a boolean value and except should be used in the test methods
 import time
 
 from playwright.sync_api import expect
