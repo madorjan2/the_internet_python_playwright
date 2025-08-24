@@ -1,4 +1,5 @@
 # TODO: are_elements_visible() should return a boolean value and except should be used in the test methods
+# TODO: are_we_scrolled_down() should use page.evaluate() to check the scroll position
 import time
 
 from playwright.sync_api import expect

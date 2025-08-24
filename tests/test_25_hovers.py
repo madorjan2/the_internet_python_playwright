@@ -8,7 +8,7 @@ class TestHovers(BaseTest):
 
 	def test_hovers(self):
 		imgs = self.page.get_by_role('img', name='User Avatar').all()
-		captions = self.page.locator('figcaption').all()
+		captions = self.page.locator('.figcaption').all()
 		for i in range(len(imgs)):
 			imgs[i].hover()
 			for j in range(len(captions)):
