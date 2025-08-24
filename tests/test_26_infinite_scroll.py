@@ -1,4 +1,4 @@
-# ToDo: use page.wait_for_timeout instead of time.sleep
+# ToDo: use page.wait_for_response to wait for the new content to load
 
 import time
 
