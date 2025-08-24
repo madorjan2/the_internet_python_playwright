@@ -1,3 +1,5 @@
+# ToDo: use page.wait_for_timeout instead of time.sleep
+
 import time
 
 
