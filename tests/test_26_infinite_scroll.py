@@ -4,7 +4,7 @@ import time
 from utils.base_test import BaseTest
 
 
-class TestHovers(BaseTest):
+class TestInfiniteScroll(BaseTest):
 	page_url = '/infinite_scroll'
 
 	def get_num_of_paragraphs(self):
