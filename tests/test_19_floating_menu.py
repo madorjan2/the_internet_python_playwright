@@ -1,9 +1,4 @@
-# TODO: are_elements_visible() should return a boolean value and except should be used in the test methods
-# TODO: are_we_scrolled_down() should use page.evaluate() to check the scroll position
 import time
-
-from playwright.sync_api import expect
-
 from utils.base_test import BaseTest
 
 
@@ -21,10 +16,8 @@ class TestFloatingMenu(BaseTest):
 		assert scroll > 0, 'Menu is not scrolled down'
 
 	def are_elements_visible(self):
-		expect(self.page.get_by_role('link', name='Home')).to_be_visible()
-		expect(self.page.get_by_role('link', name='News')).to_be_visible()
-		expect(self.page.get_by_role('link', name='Contact')).to_be_visible()
-		expect(self.page.get_by_role('link', name='About')).to_be_visible()
+		names = ['Home', 'News', 'Contact', 'About']
+		return all([self.page.get_by_role('link', name=name).is_visible() for name in names])
 
 	def test_mouse_wheel(self):
 		self.page.mouse.wheel(0, 1000)

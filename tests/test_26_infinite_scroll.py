@@ -1,7 +1,4 @@
-# ToDo: use page.wait_for_response to wait for the new content to load
-
 import time
-
 
 from utils.base_test import BaseTest
 
