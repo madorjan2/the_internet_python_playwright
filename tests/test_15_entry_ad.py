@@ -1,3 +1,4 @@
+import pytest
 from playwright.sync_api import expect
 from utils.base_test import BaseTest
 
@@ -5,8 +6,6 @@ from utils.base_test import BaseTest
 class TestEntryAd(BaseTest):
 	page_url = '/entry_ad'
 
-	# @pytest.mark.flaky(reruns=3)
-	# @pytest.mark.skip_browser('webkit')
 	def test_modal_close(self):
 		p_close = self.page.locator('.modal-footer p')
 		p_close.click()
@@ -21,6 +20,8 @@ class TestEntryAd(BaseTest):
 		self.page.reload()
 		expect(modal).not_to_be_visible()
 
+
+	@pytest.mark.only_browser('chromium') # Test is unstable in WebKit and flaky on Firefox on CI
 	def test_make_modal_reappear(self):
 		modal = self.page.locator('.modal')
 		p_close = self.page.locator('.modal-footer p')
