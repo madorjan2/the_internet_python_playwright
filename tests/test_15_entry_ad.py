@@ -20,8 +20,9 @@ class TestEntryAd(BaseTest):
 		self.page.reload()
 		expect(modal).not_to_be_visible()
 
-
-	@pytest.mark.only_browser('chromium') # Test is unstable in WebKit and flaky on Firefox on CI
+	@pytest.mark.only_browser(
+		'chromium'
+	)  # Test is unstable in WebKit and flaky on Firefox on CI
 	def test_make_modal_reappear(self):
 		modal = self.page.locator('.modal')
 		p_close = self.page.locator('.modal-footer p')
