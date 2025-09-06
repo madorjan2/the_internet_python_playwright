@@ -17,7 +17,12 @@ class TestFloatingMenu(BaseTest):
 
 	def are_elements_visible(self):
 		names = ['Home', 'News', 'Contact', 'About']
-		return all([self.page.get_by_role('link', name=name).is_visible() for name in names])
+		return all(
+			[
+				self.page.get_by_role('link', name=name).is_visible()
+				for name in names
+			]
+		)
 
 	def test_mouse_wheel(self):
 		self.page.mouse.wheel(0, 1000)
