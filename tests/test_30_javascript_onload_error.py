@@ -1,7 +1,7 @@
 from utils.base_test import BaseTest
 
 
-class TestAlerts(BaseTest):
+class TestOnLoadErrors(BaseTest):
 	page_url = '/javascript_error'
 
 	def test_homepage_loads_without_errors(self, prenav_page):

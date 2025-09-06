@@ -31,6 +31,7 @@ class TestJQueryMenus(BaseTest):
 		).get_attribute('class')
 
 	@pytest.mark.flaky(reruns=3)
+	@pytest.mark.skip_browser('webkit', reason='The csv download is flaky in webkit')
 	@pytest.mark.parametrize(
 		'file_type, element_id',
 		[
